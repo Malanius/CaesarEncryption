@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package caesarencryption;
 
 import java.util.Scanner; //Import for scanner usable for user input
@@ -37,12 +32,11 @@ public class CaesarEncryption {
             input = sc.nextLine();
             try { //Try block for nput validity
                 offset = Integer.parseInt(input); //Try to parse the input
-                if (offset >= -25 && offset <= 25){ //Check if the input is in range (this won't proceed if input is not integer
+                if (offset >= -25 && offset <= 25) { //Check if the input is in range (this won't proceed if input is not integer
                     break; //If it is, break the check loop and continue
-                }
-                else //If out of range
+                } else //If out of range
                 {
-                    throw new NumberFormatException();
+                    throw new NumberFormatException(); //Throw an error
                 }
             } catch (NumberFormatException e) { //If input is invalid
                 System.err.println(input + " is not a valid number!"); //Inform the user that he can't do what I need from him
@@ -64,8 +58,6 @@ public class CaesarEncryption {
                 encrypted = encrypted + c; //Otherwise just copy it
             }//End of letter character check
         } //End of iteration
-
-        System.out.println(
-                "Encrypted sentence is: " + encrypted); //Prints the result
-    } //End of main
+        System.out.println("Encrypted sentence is: " + encrypted); //Prints the result
+    } //End ofmain
 } //End of class
