@@ -5,6 +5,8 @@
  */
 package caesarencryption;
 
+import java.util.Scanner; //Import for scanner usable for user input
+
 /**
  *
  * @author Malanius
@@ -14,17 +16,21 @@ public class CaesarEncryption {
     /**
      * @param args the command line arguments
      */
-    public static void main(String[] args) {
-        // TODO user defined input and offset
-        String input = "Ahoj xyzz!"; //Input placeholder
+    public static void main(String[] args) { //Start of main
+        //unVariables definition
+        final int min = (int) 'a'; //Get the ASCII code for lowest number possible
+        final int max = (int) 'z'; ///Get the ASCII code for highest number possible
+        //Variavle definition
+        String input = "";
         String encrypted = ""; //Initialization of encrypted string;
-        int min = (int) 'a'; //Get the ASCII code for lowest number possible
-        int max = (int) 'z'; ///Get the ASCII code for highest number possible
-        int asdiff = max - min;
-        //System.out.printf("Min: %d, Max: %d. \nRange is: %d\n", min, max, asdiff); //Deprecated, just showing numbers for ASCII codes of min and max and range
+
+        //Get the sentence input from user
+        Scanner sc = new Scanner(System.in); //Seting up scanner for user input
+        System.out.printf("Insert the sentence to be encrypted:\n→");
+        input = sc.nextLine(); //User defined input sentence
         // TODO user defined offset
-        int offset = 1; //Offset of encryption
-        input = input.toLowerCase();
+        int offset = 3; //Offset of encryption
+        input = input.toLowerCase(); //encrytion only on small leters
         for (char c : input.toCharArray()) { //Start iterating the input.
             //encrypted = encrypted + (char)((int)c + offset); //deprecated - changed witch non-letter characters switching. (Saves a off  seted characer at each cycle)
             int chr = (int) c; //Get the ASCII code for actual character
