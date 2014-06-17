@@ -21,17 +21,36 @@ public class CaesarEncryption {
         final int min = (int) 'a'; //Get the ASCII code for lowest number possible
         final int max = (int) 'z'; ///Get the ASCII code for highest number possible
         //Variable definition
+        int offset = 0;
         String input;
+        String sentence;
         String encrypted = ""; //Initialization of encrypted string;
 
         //Get the sentence input from user
         Scanner sc = new Scanner(System.in); //Seting up scanner for user input
-        System.out.println("Insert the sentence to be encrypted:\n→");
-        input = sc.nextLine(); //User defined input sentence
+        System.out.print("Insert the sentence to be encrypted:\n→");
+        sentence = sc.nextLine(); //User defined input sentence
         // TODO user defined offset
-        int offset = -1; //Offset of encryption
-        input = input.toLowerCase(); //encrytion only on small leters
-        for (char c : input.toCharArray()) { //Start iterating the input.
+        //User defined offset
+        boolean looped = true;
+        while (looped) { //Start of correct input loop
+            System.out.print("Specify required offset. Valid range is -25 to +25.\n→");
+            input = sc.nextLine();
+            try { //Try block for nput validity
+                offset = Integer.parseInt(input); //Try to parse the input
+                if (offset >= -25 && offset <= 25){ //Check if the input is in range (this won't proceed if input is not integer
+                    break; //If it is, break the check loop and continue
+                }
+                else //If out of range
+                {
+                    offset = Integer.parseInt("induced error"); //Induce an error
+                }
+            } catch (NumberFormatException e) { //If input is invalid
+                System.err.println(input + " is not a valid number!"); //Inform the user that he can't do what I need from him
+            } //End of catch
+        } //End of correct input loop
+        sentence = sentence.toLowerCase(); //encrytion only on small leters
+        for (char c : sentence.toCharArray()) { //Start iterating the input.
             //encrypted = encrypted + (char)((int)c + offset); //deprecated - changed witch non-letter characters switching. (Saves a off  seted characer at each cycle)
             int chr = (int) c; //Get the ASCII code for actual character
             if (chr >= min && chr <= max) { //If it is a letter character, encrypt it by ASCII offset
@@ -49,6 +68,5 @@ public class CaesarEncryption {
 
         System.out.println(
                 "Encrypted sentence is: " + encrypted); //Prints the result
-    } //End of main
-
+    }
 } //End of class
