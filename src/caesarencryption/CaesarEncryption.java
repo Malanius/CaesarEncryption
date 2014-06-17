@@ -30,17 +30,20 @@ public class CaesarEncryption {
         Scanner sc = new Scanner(System.in); //Seting up scanner for user input
         System.out.print("Insert the sentence to be encrypted:\n→");
         sentence = sc.nextLine(); //User defined input sentence
+        // TODO user defined offset
         //User defined offset
-        while (true) { //Start of correct input loop
+        boolean looped = true;
+        while (looped) { //Start of correct input loop
             System.out.print("Specify required offset. Valid range is -25 to +25.\n→");
             input = sc.nextLine();
             try { //Try block for nput validity
                 offset = Integer.parseInt(input); //Try to parse the input
-                if (offset >= -25 && offset <= 25) { //Check if the input is in range (this won't proceed if input is not integer
+                if (offset >= -25 && offset <= 25){ //Check if the input is in range (this won't proceed if input is not integer
                     break; //If it is, break the check loop and continue
-                } else //If out of range
+                }
+                else //If out of range
                 {
-                    throw new NumberFormatException(); //Induce an error
+                    offset = Integer.parseInt("induced error"); //Induce an error
                 }
             } catch (NumberFormatException e) { //If input is invalid
                 System.err.println(input + " is not a valid number!"); //Inform the user that he can't do what I need from him
@@ -65,5 +68,5 @@ public class CaesarEncryption {
 
         System.out.println(
                 "Encrypted sentence is: " + encrypted); //Prints the result
-    } //End of main
+    }
 } //End of class
