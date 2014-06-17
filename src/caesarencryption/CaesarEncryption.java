@@ -20,23 +20,25 @@ public class CaesarEncryption {
         //unVariables definition
         final int min = (int) 'a'; //Get the ASCII code for lowest number possible
         final int max = (int) 'z'; ///Get the ASCII code for highest number possible
-        //Variavle definition
-        String input = "";
+        //Variable definition
+        String input;
         String encrypted = ""; //Initialization of encrypted string;
 
         //Get the sentence input from user
         Scanner sc = new Scanner(System.in); //Seting up scanner for user input
-        System.out.printf("Insert the sentence to be encrypted:\n→");
+        System.out.println("Insert the sentence to be encrypted:\n→");
         input = sc.nextLine(); //User defined input sentence
         // TODO user defined offset
-        int offset = 3; //Offset of encryption
+        int offset = -1; //Offset of encryption
         input = input.toLowerCase(); //encrytion only on small leters
         for (char c : input.toCharArray()) { //Start iterating the input.
             //encrypted = encrypted + (char)((int)c + offset); //deprecated - changed witch non-letter characters switching. (Saves a off  seted characer at each cycle)
             int chr = (int) c; //Get the ASCII code for actual character
             if (chr >= min && chr <= max) { //If it is a letter character, encrypt it by ASCII offset
-                if ((chr + offset) > max) { //If the offseted character is outside lower letters range
+                if ((chr + offset) > max) { //If the offseted character is outside lower letters max range
                     encrypted = encrypted + (char) (chr + (offset - 26)); //Then cycle the offset to the begining of range
+                } else if ((chr + offset) < min) { //If the offseted character is outside begining of range
+                    encrypted = encrypted + (char) (chr + (offset + 26)); //Then cycle the offset to the end of range
                 } else { //otherwise
                     encrypted = encrypted + (char) (chr + offset); //Offset it in range
                 } //End of offset range check
@@ -44,7 +46,9 @@ public class CaesarEncryption {
                 encrypted = encrypted + c; //Otherwise just copy it
             }//End of letter character check
         } //End of iteration
-        System.out.println("Encrypted sentence is: " + encrypted); //Prints the result
+
+        System.out.println(
+                "Encrypted sentence is: " + encrypted); //Prints the result
     } //End of main
 
 } //End of class
